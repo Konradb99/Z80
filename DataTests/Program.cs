@@ -10,9 +10,9 @@ namespace DataTests
             Print(wrapper.Sub(0));
         }
 
-        public static void Print(BitArraySegment wrapper)
+        public static void Print(BitArraySegment array)
         {
-            foreach (var val in wrapper)
+            foreach (var val in array)
             {
                 Console.Write(val ? 1 : 0);
             }
@@ -22,9 +22,9 @@ namespace DataTests
         public static void Main(string[] args)
         {
             var data = new byte[10];
-            var baw = new BitArray(data);
-            baw.Sub(0).And(baw.Sub(1));
-            Print(baw);
+            var ba = new BitArray(data);
+            ba.Sub(0).And(ba.Sub(1));
+            Print(ba);
         }
     }
 }
