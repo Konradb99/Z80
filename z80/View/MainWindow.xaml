@@ -1,0 +1,29 @@
+﻿<Window x:Class="z80.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:z80"
+        xmlns:view="clr-namespace:z80.View.ViewControls"
+        xmlns:vm="clr-namespace:z80.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <vm:MainViewModel x:Key="mainVM"/>
+    </Window.Resources>
+
+    <DockPanel LastChildFill="True"
+               DataContext="{DynamicResource mainVM}">
+        <TabControl>
+            <TabItem Name="Console" Header="Konsola" Margin="100,-2,-200,0" Height="35">
+                <view:ConsoleControl x:Name="Console_control"
+                                     ConsoleResult="{Binding consoleVM.result, Mode=OneWay}"
+                                     ConsoleInput="{Binding consoleVM.input, Mode=TwoWay}"/>
+            </TabItem>
+            <TabItem Name="Registers" Header="Rejestry" Margin="400,0,-500,0" Height="35">
+                <view:RegistersControl x:Name="Register_control"/>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>
