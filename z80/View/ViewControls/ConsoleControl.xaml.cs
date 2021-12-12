@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using z80.Model.Data;
 
 namespace z80.View.ViewControls
 {
@@ -61,6 +62,7 @@ namespace z80.View.ViewControls
 
         private void input_KeyDown(object sender, KeyEventArgs e)
         {
+            input.Text = input.Text.ToUpper();
             if (e.Key == Key.Enter)
             {
                 _Result = input.Text;
