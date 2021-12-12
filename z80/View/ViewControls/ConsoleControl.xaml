@@ -15,7 +15,7 @@
                    TextWrapping="Wrap"
                    Name="display"
                    Background="Black"
-                   Foreground="White"
+                   Foreground="LightGray"
                    Text="{Binding ConsoleResult,
                                   UpdateSourceTrigger=PropertyChanged,
                                   RelativeSource={RelativeSource Mode=FindAncestor,
@@ -24,7 +24,7 @@
         <TextBox BorderBrush="{x:Null}"
                  Grid.Row="1"
                  Background="Black"
-                 Foreground="White"
+                 Foreground="LightGray"
                  Name="input"
                  KeyDown="input_KeyDown"
                  Text="{Binding ConsoleInput,
