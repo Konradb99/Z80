@@ -7,22 +7,52 @@
         xmlns:view="clr-namespace:z80.View.ViewControls"
         xmlns:vm="clr-namespace:z80.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="800" WindowStyle="SingleBorderWindow">
 
     <Window.Resources>
         <vm:MainViewModel x:Key="mainVM"/>
+
+        <Style TargetType="{x:Type TabControl}">
+            <Setter Property="TabStripPlacement" Value="Top"/>
+            <Setter Property="Background" Value="#F4F4F2" />
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0,10,0,10"/>
+        </Style>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderThickness="1,1,1,0"
+                                BorderBrush="#495464" Margin="0,0,0,0">
+                            <ContentPresenter ContentSource="Header" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#BBBFCA"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter Property="Background" Value="#E8E8E8"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <DockPanel LastChildFill="True"
                DataContext="{DynamicResource mainVM}">
-        <TabControl>
-            <TabItem Name="Console" Header="Konsola" Margin="100,-2,-200,0" Height="35">
+        <TabControl Background="#E8E8E8">
+            <TabItem Name="Console" Header="CONSOLE" Margin="100,5,-200,5" Height="35" Padding="10,10,10,10" VerticalAlignment="Center">
                 <view:ConsoleControl x:Name="Console_control"
                                      ConsoleResult="{Binding consoleVM.result, Mode=OneWay}"
-                                     ConsoleInput="{Binding consoleVM.input, Mode=TwoWay}"/>
+                                     ConsoleInput="{Binding consoleVM.input, Mode=TwoWay}" Width="600"/>
             </TabItem>
-            <TabItem Name="Registers" Header="Rejestry" Margin="400,0,-500,0" Height="35">
-                <view:RegistersControl x:Name="Register_control"/>
+            <TabItem Name="Registers" Header="REGISTERS" Margin="400,5,-500,5" Height="35" Padding="10,10,10,10" VerticalAlignment="Center" >
+                <view:RegistersControl x:Name="Register_control" />
             </TabItem>
         </TabControl>
     </DockPanel>

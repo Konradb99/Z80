@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\konra\\Documents\\GitHub\\Z80\\z80\\z80.csproj": {}
+    "C:\\Users\\Zuza\\Desktop\\GITHUB\\Z80\\z80\\z80.csproj": {}
   },
   "projects": {
-    "C:\\Users\\konra\\Documents\\GitHub\\Z80\\z80\\z80.csproj": {
+    "C:\\Users\\Zuza\\Desktop\\GITHUB\\Z80\\z80\\z80.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\konra\\Documents\\GitHub\\Z80\\z80\\z80.csproj",
+        "projectUniqueName": "C:\\Users\\Zuza\\Desktop\\GITHUB\\Z80\\z80\\z80.csproj",
         "projectName": "z80",
-        "projectPath": "C:\\Users\\konra\\Documents\\GitHub\\Z80\\z80\\z80.csproj",
-        "packagesPath": "C:\\Users\\konra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\konra\\Documents\\GitHub\\Z80\\z80\\obj\\",
+        "projectPath": "C:\\Users\\Zuza\\Desktop\\GITHUB\\Z80\\z80\\z80.csproj",
+        "packagesPath": "C:\\Users\\Zuza\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Zuza\\Desktop\\GITHUB\\Z80\\z80\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\konra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Zuza\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -44,6 +43,16 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "MaterialDesignColors": {
+              "target": "Package",
+              "version": "[2.0.4, )"
+            },
+            "MaterialDesignThemes": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -62,7 +71,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
