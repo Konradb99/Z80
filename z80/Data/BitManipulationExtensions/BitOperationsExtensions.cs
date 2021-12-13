@@ -44,6 +44,27 @@ namespace z80.Data.BitManipulationExtensions
             return result;
         }
 
+        private byte Xor(byte a, byte b)
+        {
+            var result = (byte)(a ^ b);
+
+            SetFlag(Flags.N, false);
+            SetFlag(Flags.C, false);
+            SetFlag(Flags.S, (result & 0x80) > 0);
+            SetFlag(Flags.Z, result == 0x00);
+            SetFlag(Flags.P, Parity(result));
+            SetFlag(Flags.H, false);
+
+            // Undocumented Flags
+            SetFlag(Flags.X, ((result & 0x08) > 0) ? true : false); //Copy of bit 3
+            SetFlag(Flags.U, ((result & 0x20) > 0) ? true : false); //Copy of bit 5
+            SetQ();
+
+            return result;
+        }
+
+
+
         private static bool Parity(ushort res)
         {
             var retVal = true;
