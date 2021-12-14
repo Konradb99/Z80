@@ -18,7 +18,5 @@ C:\Users\konra\Documents\GitHub\Z80\z80\obj\Debug\netcoreapp3.1\z80.genruntimeco
 C:\Users\konra\Documents\GitHub\Z80\z80\obj\Debug\netcoreapp3.1\View\MainWindow.g.cs
 C:\Users\konra\Documents\GitHub\Z80\z80\obj\Debug\netcoreapp3.1\View\MainWindow.baml
 C:\Users\konra\Documents\GitHub\Z80\z80\obj\Debug\netcoreapp3.1\View\ViewControls\ConsoleControl.g.cs
-C:\Users\konra\Documents\GitHub\Z80\z80\obj\Debug\netcoreapp3.1\View\ViewControls\RegistersControl.g.cs
 C:\Users\konra\Documents\GitHub\Z80\z80\obj\Debug\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
 C:\Users\konra\Documents\GitHub\Z80\z80\obj\Debug\netcoreapp3.1\View\ViewControls\ConsoleControl.baml
-C:\Users\konra\Documents\GitHub\Z80\z80\obj\Debug\netcoreapp3.1\View\ViewControls\RegistersControl.baml

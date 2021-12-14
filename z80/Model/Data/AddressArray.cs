@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Diagnostics;
+using z80.ViewModel.BaseClass;
+using System.Collections.ObjectModel;
 
 namespace z80.Model.Data
 {
@@ -23,12 +25,11 @@ namespace z80.Model.Data
             Debug.WriteLine(array);
             return array;
         }
-        internal static Dictionary<string, string> GenerateMemoryRegister(string[] AddressRegister){
-            Dictionary<string, string> Register = new Dictionary<string, string>();
+        internal static ObservableCollection<Register> GenerateMemoryRegister(string[] AddressRegister){
+            ObservableCollection<Register> Register = new ObservableCollection<Register>();
             for(int i = 0; i < AddressRegister.Length; i++)
             {
-
-                Register.Add(AddressRegister[i], AddressRegister[i]);
+                Register.Add(new Register(AddressRegister[i], AddressRegister[i]));
             }
             return Register;
         }

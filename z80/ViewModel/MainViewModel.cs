@@ -9,14 +9,12 @@ namespace z80.ViewModel
     class MainViewModel : ViewModelBase
     {
         public ConsoleViewModel ConsoleVM { get; set; }
+        public RegistersViewModel RegistersVM { get; set; }
 
         public MainViewModel()
         {
-            //Generate array of main register addressess -> 1address = 1bit
-            //Initial size 1Kb
-            string[] MainRegisterAddress = AddressArray.GenerateAddressRegister(1024);
-            AddressArray.GenerateMemoryRegister(MainRegisterAddress);
             ConsoleVM = new ConsoleViewModel();
+            RegistersVM = new RegistersViewModel();
         }
     }
 }

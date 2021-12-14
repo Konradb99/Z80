@@ -24,6 +24,7 @@ namespace z80
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
         
     }

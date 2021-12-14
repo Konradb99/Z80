@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:z80"
         xmlns:view="clr-namespace:z80.View.ViewControls"
-        xmlns:vm="clr-namespace:z80.ViewModel"
+        xmlns:vm="clr-namespace:z80.ViewModel" xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
@@ -18,11 +18,122 @@
         <TabControl>
             <TabItem Name="Console" Header="Konsola" Margin="100,-2,-200,0" Height="35">
                 <view:ConsoleControl x:Name="Console_control"
-                                     ConsoleResult="{Binding consoleVM.result, Mode=OneWay}"
-                                     ConsoleInput="{Binding consoleVM.input, Mode=TwoWay}"/>
+                                     ConsoleResult="{Binding ConsoleVM.ConsoleResult, Mode=OneWay}"
+                                     ConsoleInput="{Binding ConsoleVM.ConsoleInput, Mode=TwoWay}"/>
             </TabItem>
             <TabItem Name="Registers" Header="Rejestry" Margin="400,0,-500,0" Height="35">
-                <view:RegistersControl x:Name="Register_control"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="5*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="REJESTRY" FontSize="30px" Margin="10px" HorizontalAlignment="Center" Grid.Row="0"/>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <StackPanel>
+                                        <TextBlock Text="GŁÓWNY" HorizontalAlignment="Center" FontSize="18px"/>
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0" Height="280" VerticalAlignment="Top">
+                                            <ScrollViewer.Resources>
+                                                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">1</sys:Double>
+                                            </ScrollViewer.Resources>
+                                            <!-- StackPanel -> each pair of address + value in own stackpanel -->
+                                            <ItemsControl x:Name="MainRegisterList" ItemsSource="{Binding RegistersVM.MainRegister, Mode=TwoWay}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Width="50" Foreground="Black" Background="LightGray" FontSize="15px" Margin="15 5 5 0" Text="{Binding Path=address}" />
+                                                            <TextBlock Width="50" Foreground="Black" Background="LightGray" FontSize="15px" Margin="0 5 0 0" Text="{Binding Path=value}" />
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </ScrollViewer>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <StackPanel>
+                                        <TextBlock Text="GŁÓWNY" HorizontalAlignment="Center" FontSize="18px"/>
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0" Height="280" VerticalAlignment="Top">
+                                            <ScrollViewer.Resources>
+                                                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">1</sys:Double>
+                                            </ScrollViewer.Resources>
+                                            <!-- StackPanel -> each pair of address + value in own stackpanel -->
+
+                                            <ItemsControl x:Name="AlternativeRegisterList" ItemsSource="{Binding RegistersVM.AlternativeRegister, Mode=TwoWay}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Width="50" Foreground="Black" Background="LightGray" FontSize="15px" Margin="15 5 5 0" Text="{Binding Path=address}" />
+                                                            <TextBlock Width="50" Foreground="Black" Background="LightGray" FontSize="15px" Margin="0 5 0 0" Text="{Binding Path=value}" />
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </ScrollViewer>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="2">
+                                    <StackPanel>
+                                        <TextBlock Text="AKUMULATOR" HorizontalAlignment="Center" FontSize="18px"/>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="1*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock Text="A" FontSize="20px" Background="LightGray" Margin="5 0"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Column="1">
+                                                <TextBlock Text="VALUE" FontSize="20px" Background="LightGray" Margin="5 0"/>
+                                            </StackPanel>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+
+                    </Grid>
+
+
+                    <Grid Grid.Column="1">
+                        <StackPanel>
+                            <TextBlock Text="AKTUALNA INSTRUKCJA" HorizontalAlignment="Center" FontSize="20px" Margin="0 40 0 0"/>
+                            <Border Margin="80 0" BorderThickness="2">
+                                <TextBlock Background="LightGray" Margin="0 0" />
+                            </Border>
+                            <TextBlock Text="NASTĘPNA INSTRUKCJA" HorizontalAlignment="Center" FontSize="20px" Margin="0 40 0 0"/>
+                            <Border Margin="80 0" BorderThickness="2">
+                                <TextBlock Background="LightGray" Margin="0 0" />
+                            </Border>
+                            <TextBlock Text="OSTATNIA INSTRUKCJA" HorizontalAlignment="Center" FontSize="20px" Margin="0 40 0 0"/>
+                            <Border Margin="80 0" BorderThickness="2">
+                                <TextBlock Background="LightGray" Margin="0 0" />
+                            </Border>
+
+                            <Grid Margin="0 50 0 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5*"/>
+                                    <ColumnDefinition Width="4*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="LICZNIK INSTRUKCJI" Grid.Column="0" FontSize="18px" Margin="7 0"/>
+                                <Border Grid.Column="1" Margin="15 0" BorderThickness="1">
+                                    <TextBlock Background="LightGray"  />
+                                </Border>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
             </TabItem>
         </TabControl>
     </DockPanel>
