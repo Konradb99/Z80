@@ -7,33 +7,73 @@
         xmlns:view="clr-namespace:z80.View.ViewControls"
         xmlns:vm="clr-namespace:z80.ViewModel" xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        ResizeMode="NoResize"
+        Title="Emulator Z80" Height="450" Width="800">
 
     <Window.Resources>
         <vm:MainViewModel x:Key="mainVM"/>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily" Value="Agency FB"/>
+        </Style>
+        <Style TargetType="{x:Type TabControl}">
+            <Setter Property="TabStripPlacement" Value="Top"/>
+            <Setter Property="Background" Value="#495464" />
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0,10,0,10"/>
+            <Setter Property="FontFamily" Value="Bernard MT Condensed"/>
+        </Style>
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="#495464"/>
+        </Style>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Border x:Name="PART_Border" Background="{TemplateBinding Background}" BorderThickness="1,1,1,0"
+                                BorderBrush="#495464" Margin="0,0,0,0">
+                            <ContentPresenter ContentSource="Header" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="#BBBFCA"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="False">
+                                <Setter Property="Background" Value="#E8E8E8"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type ItemsControl}">
+            <Setter Property="FontFamily" Value="Agency FB"/>
+        </Style>
     </Window.Resources>
 
     <DockPanel LastChildFill="True"
-               DataContext="{DynamicResource mainVM}">
-        <TabControl>
-            <TabItem Name="Console" Header="Konsola" Margin="100,-2,-200,0" Height="35">
+               DataContext="{DynamicResource mainVM}" Background="#495464">
+        <TabControl Background="#F4F4F2">
+            <TabItem Name="Console" Header="CONSOLE" Margin="100,1,-200,3" Height="35" >
                 <view:ConsoleControl x:Name="Console_control"
                                      ConsoleResult="{Binding ConsoleVM.ConsoleResult, Mode=OneWay}"
-                                     ConsoleInput="{Binding ConsoleVM.ConsoleInput, Mode=TwoWay}"/>
+                                     ConsoleInput="{Binding ConsoleVM.ConsoleInput, Mode=TwoWay}" Margin="100,0,100,0"/>
             </TabItem>
-            <TabItem Name="Registers" Header="Rejestry" Margin="400,0,-500,0" Height="35">
+            <TabItem Name="Registers" Header="REGISTERS" Margin="380,1,-480,3" Height="35">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                        <Grid>
+                        <Grid Background="#F4F4F2">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*"/>
                                 <RowDefinition Height="5*"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Text="REJESTRY" FontSize="30px" Margin="10px" HorizontalAlignment="Center" Grid.Row="0"/>
+                            <TextBlock Text="REGISTERS" FontSize="30px" Margin="10px" HorizontalAlignment="Center" Grid.Row="0"/>
                             <Grid Grid.Row="1">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1*"/>
@@ -41,8 +81,8 @@
                                     <ColumnDefinition Width="1*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0">
-                                    <StackPanel>
-                                        <TextBlock Text="GŁÓWNY" HorizontalAlignment="Center" FontSize="18px"/>
+                                    <StackPanel Background="#F4F4F2" Margin="0,0,0,-11">
+                                        <TextBlock Text="MAIN" HorizontalAlignment="Center" FontSize="18px"/>
                                         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0" Height="280" VerticalAlignment="Top">
                                             <ScrollViewer.Resources>
                                                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">1</sys:Double>
@@ -52,8 +92,8 @@
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
                                                         <StackPanel Orientation="Horizontal">
-                                                            <TextBlock Width="50" Foreground="Black" Background="LightGray" FontSize="15px" Margin="15 5 5 0" Text="{Binding Path=address}" />
-                                                            <TextBlock Width="50" Foreground="Black" Background="LightGray" FontSize="15px" Margin="0 5 0 0" Text="{Binding Path=value}" />
+                                                            <TextBlock Width="50" Foreground="Black" Background="#C4C4C4" FontSize="15px" Margin="15 5 5 0" Text="{Binding Path=address}" />
+                                                            <TextBlock Width="50" Foreground="Black" Background="#E8E8E8" FontSize="15px" Margin="0 5 0 0" Text="{Binding Path=value}" />
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
@@ -62,8 +102,8 @@
                                     </StackPanel>
                                 </Grid>
                                 <Grid Grid.Column="1">
-                                    <StackPanel>
-                                        <TextBlock Text="GŁÓWNY" HorizontalAlignment="Center" FontSize="18px"/>
+                                    <StackPanel Background="#F4F4F2" Margin="0,0,0,-11">
+                                        <TextBlock Text="ALTERNATE" HorizontalAlignment="Center" FontSize="18px"/>
                                         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0" Height="280" VerticalAlignment="Top">
                                             <ScrollViewer.Resources>
                                                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">1</sys:Double>
@@ -74,8 +114,8 @@
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
                                                         <StackPanel Orientation="Horizontal">
-                                                            <TextBlock Width="50" Foreground="Black" Background="LightGray" FontSize="15px" Margin="15 5 5 0" Text="{Binding Path=address}" />
-                                                            <TextBlock Width="50" Foreground="Black" Background="LightGray" FontSize="15px" Margin="0 5 0 0" Text="{Binding Path=value}" />
+                                                            <TextBlock Width="50" Foreground="Black" Background="#C4C4C4" FontSize="15px" Margin="15 5 5 0" Text="{Binding Path=address}" />
+                                                            <TextBlock Width="50" Foreground="Black" Background="#E8E8E8" FontSize="15px" Margin="0 5 0 0" Text="{Binding Path=value}" />
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
@@ -84,18 +124,18 @@
                                     </StackPanel>
                                 </Grid>
                                 <Grid Grid.Column="2">
-                                    <StackPanel>
-                                        <TextBlock Text="AKUMULATOR" HorizontalAlignment="Center" FontSize="18px"/>
-                                        <Grid>
+                                    <StackPanel Background="#F4F4F2" Margin="0,0,0,-13">
+                                        <TextBlock Text="ACUMULATOR" HorizontalAlignment="Center" FontSize="18px"/>
+                                        <Grid Background="#F4F4F2">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="1*"/>
                                                 <ColumnDefinition Width="1*"/>
                                             </Grid.ColumnDefinitions>
-                                            <StackPanel Grid.Column="0">
-                                                <TextBlock Text="A" FontSize="20px" Background="LightGray" Margin="5 0"/>
+                                            <StackPanel Grid.Column="0" Margin="0,0,0,0">
+                                                <TextBlock Text="A" FontSize="15px" Background="#C4C4C4" Margin="5,5,5,0" TextAlignment="Center"/>
                                             </StackPanel>
                                             <StackPanel Grid.Column="1">
-                                                <TextBlock Text="VALUE" FontSize="20px" Background="LightGray" Margin="5 0"/>
+                                                <TextBlock Text="VALUE" FontSize="15px" Background="#E8E8E8" Margin="5,5,5,0" TextAlignment="Center"/>
                                             </StackPanel>
                                         </Grid>
                                     </StackPanel>
@@ -106,31 +146,24 @@
                     </Grid>
 
 
-                    <Grid Grid.Column="1">
+                    <Grid Grid.Column="1" Background="#F4F4F2" Margin="0,0,0,-12">
                         <StackPanel>
-                            <TextBlock Text="AKTUALNA INSTRUKCJA" HorizontalAlignment="Center" FontSize="20px" Margin="0 40 0 0"/>
+                            <TextBlock Text="CURRENT INSTRUCTION" HorizontalAlignment="Center" FontSize="20px" Margin="0 30 0 0"/>
                             <Border Margin="80 0" BorderThickness="2">
-                                <TextBlock Background="LightGray" Margin="0 0" />
+                                <TextBlock Background="#C4C4C4" Margin="0 0" />
                             </Border>
-                            <TextBlock Text="NASTĘPNA INSTRUKCJA" HorizontalAlignment="Center" FontSize="20px" Margin="0 40 0 0"/>
+                            <TextBlock Text="NEXT INSTRUCTION" HorizontalAlignment="Center" FontSize="20px" Margin="0 30 0 0"/>
                             <Border Margin="80 0" BorderThickness="2">
-                                <TextBlock Background="LightGray" Margin="0 0" />
+                                <TextBlock Background="#C4C4C4" Margin="0 0" />
                             </Border>
-                            <TextBlock Text="OSTATNIA INSTRUKCJA" HorizontalAlignment="Center" FontSize="20px" Margin="0 40 0 0"/>
+                            <TextBlock Text="LAST INSTRUCTION" HorizontalAlignment="Center" FontSize="20px" Margin="0 30 0 0"/>
                             <Border Margin="80 0" BorderThickness="2">
-                                <TextBlock Background="LightGray" Margin="0 0" />
+                                <TextBlock Background="#C4C4C4" Margin="0 0" />
                             </Border>
-
-                            <Grid Margin="0 50 0 0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="5*"/>
-                                    <ColumnDefinition Width="4*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="LICZNIK INSTRUKCJI" Grid.Column="0" FontSize="18px" Margin="7 0"/>
-                                <Border Grid.Column="1" Margin="15 0" BorderThickness="1">
-                                    <TextBlock Background="LightGray"  />
-                                </Border>
-                            </Grid>
+                            <TextBlock Text="INSTRUCTIONS COUNTER" HorizontalAlignment="Center" FontSize="20px" Margin="0 30 0 0"/>
+                            <Border Margin="80 0" BorderThickness="2">
+                                <TextBlock Background="#C4C4C4" Margin="0 0" />
+                            </Border>
                         </StackPanel>
                     </Grid>
                 </Grid>

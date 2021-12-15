@@ -14,8 +14,10 @@
         <TextBlock Grid.Row="0"
                    TextWrapping="Wrap"
                    Name="display"
-                   Background="Black"
-                   Foreground="LightGray"
+                   Background="#495464"
+                   Foreground="White"
+                   FontFamily="Agency FB"
+                   FontSize="12px"
                    Text="{Binding ConsoleResult,
                                   UpdateSourceTrigger=PropertyChanged,
                                   RelativeSource={RelativeSource Mode=FindAncestor,
@@ -23,10 +25,12 @@
         />
         <TextBox BorderBrush="{x:Null}"
                  Grid.Row="1"
-                 Background="Black"
-                 Foreground="LightGray"
+                 Background="#495464"
+                 Foreground="White"
                  Name="input"
                  KeyDown="input_KeyDown"
+                 FontFamily="Agency FB"
+                 FontSize="12px"
                  Text="{Binding ConsoleInput,
                                   UpdateSourceTrigger=PropertyChanged,
                                   RelativeSource={RelativeSource Mode=FindAncestor,
