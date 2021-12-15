@@ -6,7 +6,7 @@ namespace z80.Data.BitManipulationExtensions
     {
         public Flags Q { get; set; } = 0x00;
 
-        private byte And(byte a, byte b)
+        public byte And(byte a, byte b)
         {
             var result = (byte)(a & b);
 
@@ -25,7 +25,7 @@ namespace z80.Data.BitManipulationExtensions
             return result;
         }
 
-        private byte Or(byte a, byte b)
+        public byte Or(byte a, byte b)
         {
             var result = (byte)(a | b);
 
