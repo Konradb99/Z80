@@ -24,11 +24,8 @@ namespace z80
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
-
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        
     }
 }

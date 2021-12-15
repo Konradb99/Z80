@@ -1,11 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6QAicPQFtvK1nxpzlx9WitQJUdqvlbYQTvbJpGB2XlFYS7yCf0LtJzOvKhsN8oyicy66MNPI4fEe4ZVDBXJPFg==",
+  "dgSpecHash": "MMQ/cL2KFAhgWL9tDS+LXZI22yLvZ8m97YWyDri2u/8vi7h9FUYHJ7S+5TFBOyAUhM2V0UvdbIKu8hiAILErGQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Zuza\\Desktop\\GITHUB\\Z80\\z80\\z80.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Zuza\\.nuget\\packages\\materialdesigncolors\\2.0.4\\materialdesigncolors.2.0.4.nupkg.sha512",
-    "C:\\Users\\Zuza\\.nuget\\packages\\materialdesignthemes\\4.3.0\\materialdesignthemes.4.3.0.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\Zuza\\Desktop\\z80\\z80\\z80.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
