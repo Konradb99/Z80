@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Zuza\\Desktop\\z80\\z80\\z80.csproj": {}
+    "C:\\Users\\Zuza\\Desktop\\GITHUB\\Z80\\z80\\z80.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Zuza\\Desktop\\z80\\z80\\z80.csproj": {
+    "C:\\Users\\Zuza\\Desktop\\GITHUB\\Z80\\z80\\z80.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Zuza\\Desktop\\z80\\z80\\z80.csproj",
+        "projectUniqueName": "C:\\Users\\Zuza\\Desktop\\GITHUB\\Z80\\z80\\z80.csproj",
         "projectName": "z80",
-        "projectPath": "C:\\Users\\Zuza\\Desktop\\z80\\z80\\z80.csproj",
+        "projectPath": "C:\\Users\\Zuza\\Desktop\\GITHUB\\Z80\\z80\\z80.csproj",
         "packagesPath": "C:\\Users\\Zuza\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Zuza\\Desktop\\z80\\z80\\obj\\",
+        "outputPath": "C:\\Users\\Zuza\\Desktop\\GITHUB\\Z80\\z80\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

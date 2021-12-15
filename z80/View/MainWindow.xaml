@@ -7,12 +7,13 @@
         xmlns:view="clr-namespace:z80.View.ViewControls"
         xmlns:vm="clr-namespace:z80.ViewModel" xmlns:sys="clr-namespace:System;assembly=System.Runtime"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        ResizeMode="NoResize"
+        Title="Emulator Z80" Height="450" Width="800">
 
     <Window.Resources>
         <vm:MainViewModel x:Key="mainVM"/>
         <Style TargetType="{x:Type TextBlock}">
-            <Setter Property="FontFamily" Value="Bernard MT Condensed"/>
+            <Setter Property="FontFamily" Value="Agency FB"/>
         </Style>
         <Style TargetType="{x:Type TabControl}">
             <Setter Property="TabStripPlacement" Value="Top"/>
@@ -47,17 +48,20 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="{x:Type ItemsControl}">
+            <Setter Property="FontFamily" Value="Agency FB"/>
+        </Style>
     </Window.Resources>
 
     <DockPanel LastChildFill="True"
                DataContext="{DynamicResource mainVM}" Background="#495464">
         <TabControl Background="#F4F4F2">
-            <TabItem Name="Console" Header="CONSOLE" Margin="100,2,-200,2" Height="35" >
+            <TabItem Name="Console" Header="CONSOLE" Margin="100,1,-200,3" Height="35" >
                 <view:ConsoleControl x:Name="Console_control"
                                      ConsoleResult="{Binding ConsoleVM.ConsoleResult, Mode=OneWay}"
-                                     ConsoleInput="{Binding ConsoleVM.ConsoleInput, Mode=TwoWay}" Margin="100,0,95,0"/>
+                                     ConsoleInput="{Binding ConsoleVM.ConsoleInput, Mode=TwoWay}" Margin="100,0,100,0"/>
             </TabItem>
-            <TabItem Name="Registers" Header="REGISTERS" Margin="400,2,-500,2" Height="35">
+            <TabItem Name="Registers" Header="REGISTERS" Margin="380,1,-480,3" Height="35">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
