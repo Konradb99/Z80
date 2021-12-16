@@ -6,6 +6,14 @@
 *.exe
 *.o
 *.so
+*.json
+*.suo
+*.cache
+*.lref
+*.props
+*.editorconfig
+*.v2
+*.targets
 
 # Packages #
 ############
