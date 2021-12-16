@@ -62,7 +62,6 @@ namespace z80.View.ViewControls
 
         private void input_KeyDown(object sender, KeyEventArgs e)
         {
-            input.Text = input.Text.ToUpper();
             if (e.Key == Key.Enter)
             {
                 _Result = input.Text;

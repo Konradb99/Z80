@@ -31,6 +31,7 @@
                  KeyDown="input_KeyDown"
                  FontFamily="Agency FB"
                  FontSize="12px"
+                 CharacterCasing="Upper"
                  Text="{Binding ConsoleInput,
                                   UpdateSourceTrigger=PropertyChanged,
                                   RelativeSource={RelativeSource Mode=FindAncestor,
