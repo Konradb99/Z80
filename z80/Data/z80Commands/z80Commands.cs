@@ -79,5 +79,21 @@ namespace z80.Data.z80Commands
         {
             return 0;
         }
+
+        private byte ReadFromRegister(int src)
+        {
+            switch (src)
+            {
+                case 0: return B;
+                case 1: return C;
+                case 2: return D;
+                case 3: return E;
+                case 4: return H;
+                case 5: return L;
+                case 6: return (byte)F;
+                case 7: return A;
+                default: return 0x00;
+            };
+        }
     }
 }
