@@ -15,11 +15,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\konra\\Documents\\GitHub\\Z80\\z80\\z80.csproj",
+      "projectUniqueName": "C:\\Users\\konra\\Documents\\GitHub\\Z80_ver2\\z80\\z80.csproj",
       "projectName": "z80",
-      "projectPath": "C:\\Users\\konra\\Documents\\GitHub\\Z80\\z80\\z80.csproj",
+      "projectPath": "C:\\Users\\konra\\Documents\\GitHub\\Z80_ver2\\z80\\z80.csproj",
       "packagesPath": "C:\\Users\\konra\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\konra\\Documents\\GitHub\\Z80\\z80\\obj\\",
+      "outputPath": "C:\\Users\\konra\\Documents\\GitHub\\Z80_ver2\\z80\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
