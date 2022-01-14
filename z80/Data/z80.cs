@@ -23,9 +23,9 @@ namespace z80.Data
         // Flags Affected: All
         public byte ANDR(string reg)
         {
-            var test = _vm.MainRegister.FirstOrDefault(x => x.address == reg);
+            var currentRegister = _vm.MainRegister.FirstOrDefault(x => x.address == reg);
             var acc = _vm.MainRegister.FirstOrDefault(x => x.address == "A");        
-            acc.value = _bitOperationsExtensions.And(acc.value, test.value);
+            acc.value = _bitOperationsExtensions.And(acc.value, currentRegister.value);
             return 0;
         }
 
@@ -42,9 +42,9 @@ namespace z80.Data
         // Flags Affected: All
         public byte ORR(string reg)
         {
-            var test = _vm.MainRegister.FirstOrDefault(x => x.address == reg);
+            var currentRegister = _vm.MainRegister.FirstOrDefault(x => x.address == reg);
             var acc = _vm.MainRegister.FirstOrDefault(x => x.address == "A");
-            acc.value = _bitOperationsExtensions.Or(acc.value, test.value);
+            acc.value = _bitOperationsExtensions.Or(acc.value, currentRegister.value);
             return 0;
         }
 
@@ -62,9 +62,9 @@ namespace z80.Data
         // Flags Affected: All
         public byte XORR(string reg)
         {
-            var test = _vm.MainRegister.FirstOrDefault(x => x.address == reg);
+            var currentRegister = _vm.MainRegister.FirstOrDefault(x => x.address == reg);
             var acc = _vm.MainRegister.FirstOrDefault(x => x.address == "A");
-            acc.value = _bitOperationsExtensions.Xor(acc.value, test.value);
+            acc.value = _bitOperationsExtensions.Xor(acc.value, currentRegister.value);
             return 0;
         }
 
