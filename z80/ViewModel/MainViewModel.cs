@@ -13,8 +13,8 @@ namespace z80.ViewModel
 
         public MainViewModel()
         {
-            ConsoleVM = new ConsoleViewModel();
             RegistersVM = new RegistersViewModel();
+            ConsoleVM = new ConsoleViewModel(RegistersVM);
         }
     }
 }

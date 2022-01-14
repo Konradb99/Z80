@@ -65,6 +65,7 @@ namespace z80.View.ViewControls
             if (e.Key == Key.Enter)
             {
                 _Result = input.Text;
+                ConsoleResult = input.Text;
                 _Result += "\n";
                 input.Text = null;
                 display.Text += _Result;

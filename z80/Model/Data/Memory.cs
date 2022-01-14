@@ -4,7 +4,7 @@ using System.Text;
 
 namespace z80.Model.Data
 {
-    class Memory
+    public class Memory
     {
         public string address { get; set; }
         public byte value { get; set; }

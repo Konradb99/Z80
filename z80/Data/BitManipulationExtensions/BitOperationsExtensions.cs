@@ -44,7 +44,7 @@ namespace z80.Data.BitManipulationExtensions
             return result;
         }
 
-        private byte Xor(byte a, byte b)
+        public byte Xor(byte a, byte b)
         {
             var result = (byte)(a ^ b);
 

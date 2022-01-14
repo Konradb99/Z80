@@ -58,7 +58,7 @@
         <TabControl Background="#F4F4F2">
             <TabItem Name="Console" Header="CONSOLE" Margin="100,1,-200,3" Height="35" >
                 <view:ConsoleControl x:Name="Console_control"
-                                     ConsoleResult="{Binding ConsoleVM.ConsoleResult, Mode=OneWay}"
+                                     ConsoleResult="{Binding ConsoleVM.ConsoleResult, Mode=TwoWay}"
                                      ConsoleInput="{Binding ConsoleVM.ConsoleInput, Mode=TwoWay}" Margin="100,0,100,0"/>
             </TabItem>
             <TabItem Name="Registers" Header="REGISTERS" Margin="380,1,-480,3" Height="35">
