@@ -4,15 +4,15 @@ using System.Text;
 
 namespace z80.Model.Data
 {
-    public class Register
+    class Memory
     {
         public string address { get; set; }
         public byte value { get; set; }
 
-        public Register(string HexAddress, byte value)
+        public Memory(string HexAddress, byte HexValue)
         {
             this.address = HexAddress;
-            this.value = value;
+            this.value = HexValue;
         }
     }
 }

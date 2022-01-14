@@ -15,21 +15,21 @@ namespace z80.Model.Data
             return hex;
         }
 
-        internal static string[] GenerateAddressRegister(int size)
+        internal static byte[] GenerateAddressRegister(int size)
         {
-            string[] array = new string[size];
+            byte[] array = new byte[size];
             for (int i = 0; i < size; i++)
             {
-                array[i] = GenerateHex(i);
+                array[i] = (byte)i;
             }
             Debug.WriteLine(array);
             return array;
         }
-        internal static ObservableCollection<Register> GenerateMemoryRegister(string[] AddressRegister){
-            ObservableCollection<Register> Register = new ObservableCollection<Register>();
+        internal static ObservableCollection<Memory> GenerateMemoryRegister(byte[] AddressRegister){
+            ObservableCollection<Memory> Register = new ObservableCollection<Memory>();
             for(int i = 0; i < AddressRegister.Length; i++)
             {
-                Register.Add(new Register(AddressRegister[i], AddressRegister[i]));
+                Register.Add(new Memory(GenerateHex(Int32.Parse(AddressRegister[i].ToString())), AddressRegister[i]));
             }
             return Register;
         }

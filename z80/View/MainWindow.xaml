@@ -82,7 +82,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0">
                                     <StackPanel Background="#F4F4F2" Margin="0,0,0,-11">
-                                        <TextBlock Text="MAIN" HorizontalAlignment="Center" FontSize="18px"/>
+                                        <TextBlock Text="MAIN REGISTER" HorizontalAlignment="Center" FontSize="18px"/>
                                         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0" Height="280" VerticalAlignment="Top">
                                             <ScrollViewer.Resources>
                                                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">1</sys:Double>
@@ -103,14 +103,13 @@
                                 </Grid>
                                 <Grid Grid.Column="1">
                                     <StackPanel Background="#F4F4F2" Margin="0,0,0,-11">
-                                        <TextBlock Text="ALTERNATE" HorizontalAlignment="Center" FontSize="18px"/>
+                                        <TextBlock Text="MEMORY" HorizontalAlignment="Center" FontSize="18px"/>
                                         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0" Height="280" VerticalAlignment="Top">
                                             <ScrollViewer.Resources>
                                                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">1</sys:Double>
                                             </ScrollViewer.Resources>
                                             <!-- StackPanel -> each pair of address + value in own stackpanel -->
-
-                                            <ItemsControl x:Name="AlternativeRegisterList" ItemsSource="{Binding RegistersVM.AlternativeRegister, Mode=TwoWay}">
+                                            <ItemsControl x:Name="MainMemoryList" ItemsSource="{Binding RegistersVM.MainMemory, Mode=TwoWay}">
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
                                                         <StackPanel Orientation="Horizontal">
