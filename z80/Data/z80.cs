@@ -1,16 +1,16 @@
-﻿using z80.Data.BitManipulationExtensions;
+﻿using System.Collections.Generic;
+using System.Linq;
+using z80.Data.BitManipulationExtensions;
+using z80.Data.z80Commands;
+using z80.ViewModel;
 using static z80.Data.BitManipulationExtensions.FlagsHelper;
 
-namespace z80.Data.z80Commands
+namespace z80.Data
 {
-    public class z80Commands
+    public class z80
     {
-        // CPU Registers
-        // ========================================
-        // General Purpose Registers
-        // ========================================
         public byte A { get; set; } = 0x00;
-        public Flags F { get; set; } = 0x00; //Shows CPU state in the form of bit flags
+        public Flags F { get; set; } = 0x00;
         public byte B { get; set; } = 0x00;
         public byte C { get; set; } = 0x00;
         public byte D { get; set; } = 0x00;
@@ -18,18 +18,34 @@ namespace z80.Data.z80Commands
         public byte H { get; set; } = 0x00;
         public byte L { get; set; } = 0x00;
 
+        private byte _currentOpCode = 0x00;
+
+        private byte ReadFromBus(ushort addr) => _bus.Read(addr, false);
+        private BitOperationsExtensions _bitOperationsExtensions;
+        public RegistersViewModel _vm;
+
+        public z80(BitOperationsExtensions bitOperationsExtensions, RegistersViewModel vm)
+        {
+            _bitOperationsExtensions = bitOperationsExtensions;
+            _vm = vm;
+
+        }
+
         // Instruction   : AND r
         // Operation     : A <- A & r
         // Flags Affected: All
-        private byte ANDR(byte opCode)
+        public byte ANDR(string reg)
         {
+            var test = _vm.MainRegister.FirstOrDefault(x => x.address == reg);
+            var acc = _vm.MainRegister.FirstOrDefault(x => x.address == "A");
+            acc.value = _bitOperationsExtensions.And(A, test?.value);
             return 0;
         }
 
         // Instruction   : AND n
         // Operation     : A <- A & n
         // Flags Affected: All
-        private byte ANDN(byte opCode)
+        public byte ANDN(byte opCode)
         {
             return 0;
         }
@@ -37,19 +53,18 @@ namespace z80.Data.z80Commands
         // Instruction   : OR r
         // Operation     : A <- A | r
         // Flags Affected: All
-        private byte ORR(byte opCode)
+        public byte ORR(string reg)
         {
-            var bitOperationsExtensions = new BitOperationsExtensions();
-            var src = opCode & 0b00000111;
-            var n = ReadFromRegister(src);
-            A = bitOperationsExtensions.Or(A, n);
+            var test = _vm.MainRegister.FirstOrDefault(x => x.address == reg);
+            var acc = _vm.MainRegister.FirstOrDefault(x => x.address == "A");
+            acc.value = _bitOperationsExtensions.And(A, test?.value);
             return 0;
         }
 
         // Instruction   : OR n
         // Operation     : A <- A | n
         // Flags Affected: All
-        private byte ORN(byte opCode)
+        public byte ORN(byte opCode)
         {
             return 0;
         }
@@ -58,7 +73,7 @@ namespace z80.Data.z80Commands
         // Instruction   : XOR r
         // Operation     : A <- A ^ r
         // Flags Affected: All
-        private byte XORR(byte opCode)
+        public byte XORR(byte opCode)
         {
             return 0;
         }
@@ -66,7 +81,7 @@ namespace z80.Data.z80Commands
         // Instruction   : XOR n
         // Operation     : A <- A ^ n
         // Flags Affected: All
-        private byte XORN(byte opCode)
+        public byte XORN(byte opCode)
         {
             return 0;
         }
@@ -75,7 +90,7 @@ namespace z80.Data.z80Commands
         // Instruction   : NEG
         // Operation     : A <- Twos Complement of A (negation)
         // Flags Affected: All
-        private byte NEG(byte opCode)
+        public byte NEG(byte opCode)
         {
             return 0;
         }
