@@ -8,7 +8,7 @@ using z80.ViewModel.BaseClass;
 
 namespace z80.ViewModel
 {
-    class RegistersViewModel : ViewModelBase
+    public class RegistersViewModel : ViewModelBase
     {
 
         private ObservableCollection<Register> _mainRegister = new ObservableCollection<Register>();

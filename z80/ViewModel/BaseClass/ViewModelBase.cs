@@ -5,7 +5,7 @@ using System.Text;
 
 namespace z80.ViewModel.BaseClass
 {
-    class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
     {
         //zdarzenie informujące o zmiane własności w obiekcie ViewModelu
         public event PropertyChangedEventHandler PropertyChanged;
