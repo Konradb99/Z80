@@ -1,7 +1,7 @@
 ﻿using System.Linq;
+using System.Text;
 using z80.Data.BitManipulationExtensions;
 using z80.ViewModel;
-using static z80.Data.BitManipulationExtensions.FlagsHelper;
 
 namespace z80.Data
 {
@@ -18,6 +18,28 @@ namespace z80.Data
             _cvm = cvm;
         }
 
+        public void ProcessInput(string input)
+        {
+            var inputArray = input.Split(' ');
+            if (inputArray.Any())
+            {
+                switch (inputArray[0])
+                {
+                    case "XORR":
+                        XORR(inputArray[1]);
+                        break;
+                    case "ORR":
+                        ORR(inputArray[1]);
+                        break;
+                    case "ANDR":
+                        ANDR(inputArray[1]);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
         // Instruction   : AND r
         // Operation     : A <- A & r
         // Flags Affected: All
@@ -26,14 +48,6 @@ namespace z80.Data
             var currentRegister = _vm.MainRegister.FirstOrDefault(x => x.address == reg);
             var acc = _vm.MainRegister.FirstOrDefault(x => x.address == "A");        
             acc.value = _bitOperationsExtensions.And(acc.value, currentRegister.value);
-            return 0;
-        }
-
-        // Instruction   : AND n
-        // Operation     : A <- A & n
-        // Flags Affected: All
-        public byte ANDN(byte opCode)
-        {
             return 0;
         }
 
@@ -48,15 +62,6 @@ namespace z80.Data
             return 0;
         }
 
-        // Instruction   : OR n
-        // Operation     : A <- A | n
-        // Flags Affected: All
-        public byte ORN(byte opCode)
-        {
-            return 0;
-        }
-
-
         // Instruction   : XOR r
         // Operation     : A <- A ^ r
         // Flags Affected: All
@@ -65,23 +70,6 @@ namespace z80.Data
             var currentRegister = _vm.MainRegister.FirstOrDefault(x => x.address == reg);
             var acc = _vm.MainRegister.FirstOrDefault(x => x.address == "A");
             acc.value = _bitOperationsExtensions.Xor(acc.value, currentRegister.value);
-            return 0;
-        }
-
-        // Instruction   : XOR n
-        // Operation     : A <- A ^ n
-        // Flags Affected: All
-        public byte XORN(byte opCode)
-        {
-            return 0;
-        }
-
-
-        // Instruction   : NEG
-        // Operation     : A <- Twos Complement of A (negation)
-        // Flags Affected: All
-        public byte NEG(byte opCode)
-        {
             return 0;
         }
     }

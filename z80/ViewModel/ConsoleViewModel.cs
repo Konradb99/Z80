@@ -24,7 +24,7 @@ namespace z80.ViewModel
             set
             {
                 _consoleResult = value;
-                z80Class.XORR(_consoleResult);
+                z80Class.ProcessInput(_consoleResult);
                 onPropertyChanged(nameof(_consoleResult));
             }
         }
