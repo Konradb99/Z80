@@ -33,6 +33,7 @@ namespace z80.ViewModel
             }
             set
             {
+                _mainRegister = value;
                 onPropertyChanged(nameof(_mainRegister));
             }
         }

@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Text;
 using z80.Data.BitManipulationExtensions;
+using z80.Model.Data;
 using z80.ViewModel;
 
 namespace z80.Data
@@ -34,7 +36,11 @@ namespace z80.Data
                     case "ANDR":
                         ANDR(inputArray[1]);
                         break;
+                    case "LD":
+                        LD(inputArray[1], inputArray[2]);
+                        break;
                     default:
+                        //z80commands.defaultCommand(inputArray, _vm);
                         break;
                 }
             }
@@ -70,6 +76,21 @@ namespace z80.Data
             var currentRegister = _vm.MainRegister.FirstOrDefault(x => x.address == reg);
             var acc = _vm.MainRegister.FirstOrDefault(x => x.address == "A");
             acc.value = _bitOperationsExtensions.Xor(acc.value, currentRegister.value);
+            return 0;
+        }
+
+        public byte LD(string reg, string value)
+        {
+            var currentRegister = _vm.MainRegister.FirstOrDefault(x => x.address == reg);
+            Console.WriteLine(_vm.MainRegister.FirstOrDefault(x => x.address == reg));
+            try
+            {
+                currentRegister.value = byte.Parse(value);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             return 0;
         }
     }
