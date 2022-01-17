@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
-using System.Text;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Threading;
 using z80.Model.Data;
-using z80.ViewModel.BaseClass;
 
 namespace z80.ViewModel
 {
-    public class RegistersViewModel : ViewModelBase
+    public class RegistersViewModel : INotifyPropertyChanged
     {
 
         private ObservableCollection<Memory> _mainMemory = new ObservableCollection<Memory>();
@@ -20,7 +21,7 @@ namespace z80.ViewModel
             }
             set
             {
-                onPropertyChanged(nameof(_mainMemory));
+                OnPropertyChanged(nameof(_mainMemory));
             }
         }
 
@@ -29,12 +30,31 @@ namespace z80.ViewModel
         {
             get
             {
-                return _mainRegister;
+                if(_mainRegister != null)
+                {
+                    CollectionViewSource.GetDefaultView(_mainRegister).Refresh();
+                }
+                return _mainRegister ?? (_mainRegister = new ObservableCollection<Register>());
             }
             set
             {
+                if(_mainRegister == value)
+                {
+                    return;
+                }
                 _mainRegister = value;
-                onPropertyChanged(nameof(_mainRegister));
+                OnPropertyChanged(nameof(_mainRegister));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string PropertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(PropertyName));
             }
         }
 

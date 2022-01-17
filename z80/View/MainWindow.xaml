@@ -91,12 +91,12 @@
                                                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">1</sys:Double>
                                             </ScrollViewer.Resources>
                                             <!-- StackPanel -> each pair of address + value in own stackpanel -->
-                                            <ItemsControl x:Name="MainRegisterList" ItemsSource="{Binding RegistersVM.MainRegister, UpdateSourceTrigger=PropertyChanged}">
+                                            <ItemsControl x:Name="MainRegisterList" ItemsSource="{Binding RegistersVM.MainRegister}">
                                                 <ItemsControl.ItemTemplate>
                                                     <DataTemplate>
                                                         <StackPanel Orientation="Horizontal">
                                                             <TextBlock Width="50" Foreground="Black" Background="#C4C4C4" FontSize="15px" Margin="15 5 5 0" Text="{Binding address}" />
-                                                            <TextBlock Width="50" Foreground="Black" Background="#E8E8E8" FontSize="15px" Margin="0 5 0 0" Text="{Binding value}" />
+                                                            <TextBlock Width="50" Foreground="Black" Background="#E8E8E8" FontSize="15px" Margin="0 5 0 0" Text="{Binding value, StringFormat=0x{0:X2}}" />
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
