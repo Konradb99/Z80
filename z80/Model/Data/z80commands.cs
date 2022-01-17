@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
+using z80.Data.BitManipulationExtensions;
 using z80.ViewModel;
 
 namespace z80.Model.Data
@@ -84,6 +82,35 @@ namespace z80.Model.Data
                     }
                     break;
             }
+            return 0;
+        }
+        public static byte ANDR(string reg,
+            RegistersViewModel _vm,
+            BitOperationsExtensions _bitOperationsExtensions)
+        {
+            var currentRegister = _vm.MainRegister.FirstOrDefault(x => x.address == reg);
+            var acc = _vm.MainRegister.FirstOrDefault(x => x.address == "A");
+            acc.value = _bitOperationsExtensions.And(acc.value, currentRegister.value);
+            return 0;
+        }
+
+        public static byte ORR(string reg,
+            RegistersViewModel _vm,
+            BitOperationsExtensions _bitOperationsExtensions)
+        {
+            var currentRegister = _vm.MainRegister.FirstOrDefault(x => x.address == reg);
+            var acc = _vm.MainRegister.FirstOrDefault(x => x.address == "A");
+            acc.value = _bitOperationsExtensions.Or(acc.value, currentRegister.value);
+            return 0;
+        }
+
+        public static byte XORR(string reg,
+            RegistersViewModel _vm,
+            BitOperationsExtensions _bitOperationsExtensions)
+        {
+            var currentRegister = _vm.MainRegister.FirstOrDefault(x => x.address == reg);
+            var acc = _vm.MainRegister.FirstOrDefault(x => x.address == "A");
+            acc.value = _bitOperationsExtensions.Xor(acc.value, currentRegister.value);
             return 0;
         }
     }
