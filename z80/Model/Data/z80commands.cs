@@ -63,15 +63,26 @@ namespace z80.Model.Data
         }
         public static byte ADD(string reg, RegistersViewModel _vm)
         {
-            var currentRegister = _vm.MainRegister.FirstOrDefault(x => x.address == reg);
-            var acc = _vm.MainRegister.FirstOrDefault(x => x.address == "A");
-            try
+            string[] registers = new string[] { "A", "B", "C", "D", "E", "H", "L" };
+            Register currentRegister;
+            Register acc;
+            switch (reg)
             {
-                acc.value = (byte)(acc.value + currentRegister.value);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
+                case "(HL)":
+                    Commands.ADD.ADDhl(reg, _vm);
+                    break;
+                default:
+                    if (registers.Contains(reg))
+                    {
+                        //Add from register
+                        Commands.ADD.ADDr(reg, _vm);
+                    }
+                    else
+                    {
+                        //Add numerical value
+                        Commands.ADD.ADDn(reg, _vm);                        
+                    }
+                    break;
             }
             return 0;
         }
