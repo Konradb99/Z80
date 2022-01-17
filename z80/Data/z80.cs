@@ -41,7 +41,8 @@ namespace z80.Data
                         break;
                 }
             }
-
+            _vm.LastInstruction = _vm.CurrentInstruction;
+            _vm.CurrentInstruction = input;
         }
 
         // Instruction   : AND r

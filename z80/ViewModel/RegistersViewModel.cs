@@ -12,6 +12,34 @@ namespace z80.ViewModel
     public class RegistersViewModel : INotifyPropertyChanged
     {
 
+        private string _currentInstruction = "";
+        public string CurrentInstruction
+        {
+            get
+            {
+                return _currentInstruction;
+            }
+            set
+            {
+                _currentInstruction = value;
+                OnPropertyChanged(nameof(_currentInstruction));
+            }
+        }
+
+        private string _lastInstruction = "";
+        public string LastInstruction
+        {
+            get
+            {
+                return _lastInstruction;
+            }
+            set
+            {
+                _lastInstruction = value;
+                OnPropertyChanged(nameof(_lastInstruction));
+            }
+        }
+
         private ObservableCollection<Memory> _mainMemory = new ObservableCollection<Memory>();
         public ObservableCollection<Memory> MainMemory
         {
