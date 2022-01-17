@@ -39,25 +39,25 @@ namespace z80.Model.Data
 
         public static byte LD(string reg, string value, RegistersViewModel _vm)
         {
-            //Check if input in hex
-            try
+            //LD types
+            switch (reg)
             {
-                var byteValue = Convert.ToInt32(value, 16);
-                //Execute Add By Hex value
-
-            }catch(FormatException e)
-            {
-                Console.WriteLine(e);
-            }
-            var currentRegister = _vm.MainRegister.FirstOrDefault(x => x.address == reg);
-            Console.WriteLine(_vm.MainRegister.FirstOrDefault(x => x.address == reg));
-            try
-            {
-                currentRegister.value = byte.Parse(value);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
+                //BC register pair
+                case "(BC)":
+                    Commands.LD.LDbc(reg, value, _vm);
+                    break;
+                //DE register pair
+                case "(DE)":
+                    Commands.LD.LDde(reg, value, _vm);
+                    break;
+                //HL register pair
+                case "(HL)":
+                    Commands.LD.LDhr(reg, value, _vm);
+                    break;
+                //Default register -> Simple one added
+                default:
+                    Commands.LD.LDr(reg, value, _vm);
+                    break;
             }
             return 0;
         }

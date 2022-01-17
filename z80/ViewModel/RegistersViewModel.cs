@@ -17,10 +17,19 @@ namespace z80.ViewModel
         {
             get
             {
-                return _mainMemory;
+                if (_mainMemory != null)
+                {
+                    CollectionViewSource.GetDefaultView(_mainMemory).Refresh();
+                }
+                return _mainMemory ?? (_mainMemory = new ObservableCollection<Memory>());
             }
             set
             {
+                if (_mainMemory == value)
+                {
+                    return;
+                }
+                _mainMemory = value;
                 OnPropertyChanged(nameof(_mainMemory));
             }
         }
@@ -62,8 +71,9 @@ namespace z80.ViewModel
         {
             //Generate array of main register addressess -> 1 address = 1 bit
             //Initial size 1Kb
-            byte[] MainMemory = AddressArray.GenerateAddressRegister(1024);
-            _mainMemory = AddressArray.GenerateMemoryRegister(MainMemory);
+            byte[] MainMemoryValues = AddressArray.GenerateAddressRegister(256);
+            string[] MainMemoryAddress = AddressArray.GenerateAddressHex(256);
+            _mainMemory = AddressArray.GenerateMemoryArray(MainMemoryAddress, MainMemoryValues);
             //Prepare flags of registers
             _mainRegister = new ObservableCollection<Register>{
                 new Register("A", 0x00 ),
