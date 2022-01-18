@@ -20,9 +20,11 @@ namespace z80.View.ViewControls
     public partial class ConsoleControl : UserControl
     {
         string _Result = null;
+        bool FirstInput = true;
         public ConsoleControl()
         {
             InitializeComponent();
+            FirstInput = true;
             input.Focus();
         }
 
@@ -68,7 +70,15 @@ namespace z80.View.ViewControls
                 ConsoleResult = input.Text;
                 _Result += "\n";
                 input.Text = null;
-                display.Text += _Result;
+                if(FirstInput)
+                {
+                    display.Text = _Result;
+                    FirstInput = false;
+                }
+                else
+                {
+                    display.Text += _Result;
+                }
                 _Result = null;
             }
         }
