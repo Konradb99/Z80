@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using z80.ViewModel;
 
 namespace z80.Model.Data.Commands
@@ -25,6 +23,7 @@ namespace z80.Model.Data.Commands
             }
             return 0;
         }
+
         public static byte PUSHde(string reg, RegistersViewModel _vm)
         {
             Register hReg = _vm.MainRegister.FirstOrDefault(x => x.address == "D");
@@ -42,6 +41,7 @@ namespace z80.Model.Data.Commands
             }
             return 0;
         }
+
         public static byte PUSHhl(string reg, RegistersViewModel _vm)
         {
             Register hReg = _vm.MainRegister.FirstOrDefault(x => x.address == "H");
@@ -59,6 +59,7 @@ namespace z80.Model.Data.Commands
             }
             return 0;
         }
+
         public static byte PUSHaf(string reg, RegistersViewModel _vm)
         {
             Register hReg = _vm.MainRegister.FirstOrDefault(x => x.address == "A");

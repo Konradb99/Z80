@@ -98,36 +98,54 @@ namespace Z80DataTests
         }
 
         [Theory]
-        [InlineData("LD (HL) 10", 10)]
-        public void LdHLTests(string operation, byte expectedRegValue)
+        [InlineData("LD (HL) 10", "H", "L")]
+        [InlineData("LD (DE) 10", "D", "E")]
+        [InlineData("LD (BC) 10", "B", "C")]
+        public void LdHLTests(string operation, string reg1, string reg2)
         {
             string regAddress = "0x34";
-            _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == "H").value = 3;
-            _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == "L").value = 4;
+            _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == reg1).value = 3;
+            _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == reg2).value = 4;
             _z80Class.ProcessInput(operation);
-            Assert.Equal(expectedRegValue, _z80Class._vm.MainMemory.FirstOrDefault(x => x.address == regAddress).value);
+            Assert.Equal(10, _z80Class._vm.MainMemory.FirstOrDefault(x => x.address == regAddress).value);
         }
 
         [Theory]
-        [InlineData("LD (DE) 10", 10)]
-        public void LdDETests(string operation, byte expectedRegValue)
+        [InlineData("NEG", 0, 255)]
+        [InlineData("NEG", 255, 0)]
+        public void NEGTests(string operation, byte actualAccValue, byte expectedAccValue)
         {
-            string regAddress = "0x34";
-            _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == "D").value = 3;
-            _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == "E").value = 4;
+            _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == "A").value = actualAccValue;
             _z80Class.ProcessInput(operation);
-            Assert.Equal(expectedRegValue, _z80Class._vm.MainMemory.FirstOrDefault(x => x.address == regAddress).value);
+            Assert.Equal(expectedAccValue, _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == "A").value);
         }
 
         [Theory]
-        [InlineData("LD (BC) 10", 10)]
-        public void LdBCTests(string operation, byte expectedRegValue)
+        [InlineData("PUSH (BC)", "B", "C")]
+        [InlineData("PUSH (DE)", "D", "E")]
+        [InlineData("PUSH (HL)", "H", "L")]
+        [InlineData("PUSH (AF)", "A", "F")]
+        public void PUSHTests(string operation, string reg1, string reg2)
         {
-            string regAddress = "0x34";
-            _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == "B").value = 3;
-            _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == "C").value = 4;
+            _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == reg1).value = 4;
+            _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == reg2).value = 5;
             _z80Class.ProcessInput(operation);
-            Assert.Equal(expectedRegValue, _z80Class._vm.MainMemory.FirstOrDefault(x => x.address == regAddress).value);
+            Assert.Equal(0x05, _z80Class._vm.MainMemory.Last().value);
+            Assert.Equal(0x04, _z80Class._vm.MainMemory[_vm.MainMemory.Count - 2].value);
+        }
+
+        [Theory]
+        [InlineData("POP (BC)", "B", "C")]
+        [InlineData("POP (DE)", "D", "E")]
+        [InlineData("POP (HL)", "H", "L")]
+        [InlineData("POP (AF)", "A", "F")]
+        public void POPTests(string operation, string reg1, string reg2)
+        {
+            _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == reg1).value = 4;
+            _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == reg2).value = 5;
+            _z80Class.ProcessInput(operation);
+            Assert.Equal(0xFE, _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == reg2).value);
+            Assert.Equal(0xFF, _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == reg1).value);
         }
     }
 }
