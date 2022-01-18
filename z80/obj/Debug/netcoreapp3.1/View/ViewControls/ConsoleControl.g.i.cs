@@ -69,7 +69,7 @@ namespace z80.View.ViewControls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/z80;V1.0.0.0;component/view/viewcontrols/consolecontrol.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/z80;component/view/viewcontrols/consolecontrol.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\ViewControls\ConsoleControl.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
