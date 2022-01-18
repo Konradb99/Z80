@@ -34,6 +34,9 @@ namespace z80.Data
                     case "ANDR":
                         z80commands.ANDR(inputArray[1], _vm, _bitOperationsExtensions);
                         break;
+                    case "NEG":
+                        z80commands.NEG(_vm);
+                        break;
                     default:
                         z80commands.defaultCommand(inputArray, _vm);
                         break;

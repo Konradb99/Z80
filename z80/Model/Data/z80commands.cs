@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using z80.Data.BitManipulationExtensions;
 using z80.ViewModel;
@@ -84,6 +85,25 @@ namespace z80.Model.Data
             }
             return 0;
         }
+
+        public static byte NEG(RegistersViewModel _vm)
+        {
+            var acc = _vm.MainRegister.FirstOrDefault(x => x.address == "A");
+            byte[] tab = BitConverter.GetBytes(acc.value);
+            BitArray tab2 = new BitArray(tab);
+            BitArray finaltab = new BitArray(8);
+            for (int i = 0; i < tab2.Length/2; i++)
+            {
+                if (tab2[i])
+                    finaltab[i] = false;
+                else
+                   finaltab[i] = true;
+            }
+            byte final = finaltab.ToByte();
+            acc.value = final;
+            return 0;
+        }
+
         public static byte ANDR(string reg,
             RegistersViewModel _vm,
             BitOperationsExtensions _bitOperationsExtensions)
@@ -113,5 +133,19 @@ namespace z80.Model.Data
             acc.value = _bitOperationsExtensions.Xor(acc.value, currentRegister.value);
             return 0;
         }
+
+
+        public static byte ToByte(this BitArray bits)
+        {
+            if (bits.Count != 8)
+            {
+                throw new ArgumentException("bits");
+            }
+            byte[] bytes = new byte[1];
+            bits.CopyTo(bytes, 0);
+            return bytes[0];
+        }
+
     }
+
 }

@@ -124,3 +124,9 @@ z80/obj/Debug/netcoreapp3.1/View/MainWindow.baml
 z80/bin/Debug/netcoreapp3.1/z80.pdb
 z80/bin/Debug/netcoreapp3.1/z80.dll
 .vs/z80/v16/.suo
+.vs/z80/v16/.suo
+z80/obj/Debug/netcoreapp3.1/App.g.i.cs
+z80/obj/Debug/netcoreapp3.1/GeneratedInternalTypeHelper.g.i.cs
+z80/obj/Debug/netcoreapp3.1/View/MainWindow.g.i.cs
+z80/obj/Debug/netcoreapp3.1/View/ViewControls/ConsoleControl.g.i.cs
+z80/obj/Debug/netcoreapp3.1/z80_MarkupCompile.i.cache
