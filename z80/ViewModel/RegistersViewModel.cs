@@ -102,6 +102,7 @@ namespace z80.ViewModel
             //Prepare flags of registers
             _mainRegister = new ObservableCollection<Register>{
                 new Register("A", 0x00 ),
+                new Register("F", 0x00 ),
                 new Register("B", 0x00 ),
                 new Register("C", 0x00 ),
                 new Register("D", 0x00 ),

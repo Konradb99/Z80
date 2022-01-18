@@ -130,3 +130,5 @@ z80/obj/Debug/netcoreapp3.1/GeneratedInternalTypeHelper.g.i.cs
 z80/obj/Debug/netcoreapp3.1/View/MainWindow.g.i.cs
 z80/obj/Debug/netcoreapp3.1/View/ViewControls/ConsoleControl.g.i.cs
 z80/obj/Debug/netcoreapp3.1/z80_MarkupCompile.i.cache
+.vs/z80/DesignTimeBuild/.dtbcache.v2
+.vs/z80/v16/.suo

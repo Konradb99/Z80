@@ -32,6 +32,26 @@ namespace z80.Model.Data
                         Console.WriteLine(e);
                     }
                     break;
+                case "PUSH":
+                    try
+                    {
+                        PUSH(inputArray[1], _vm);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                    break;
+                case "POP":
+                    try
+                    {
+                        POP(inputArray[1], _vm);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                    break;
             }
             return 0;
         }
@@ -62,7 +82,7 @@ namespace z80.Model.Data
         }
         public static byte ADD(string reg, RegistersViewModel _vm)
         {
-            string[] registers = new string[] { "A", "B", "C", "D", "E", "H", "L" };
+            string[] registers = new string[] { "A", "F", "B", "C", "D", "E", "H", "L" };
             Register currentRegister;
             Register acc;
             switch (reg)
@@ -101,6 +121,54 @@ namespace z80.Model.Data
             }
             byte final = finaltab.ToByte();
             acc.value = final;
+            return 0;
+        }
+
+        public static byte PUSH(string reg, RegistersViewModel _vm)
+        {
+            switch (reg)
+            {
+                //BC register pair
+                case "(BC)":
+                    Commands.PUSH.PUSHbc(reg, _vm);
+                    break;
+                //DE register pair
+                case "(DE)":
+                    Commands.PUSH.PUSHde(reg, _vm);
+                    break;
+                //HL register pair
+                case "(HL)":
+                    Commands.PUSH.PUSHhl(reg, _vm);
+                    break;
+                //AF register pair
+                case "(AF)":
+                    Commands.PUSH.PUSHaf(reg, _vm);
+                    break;
+            }
+            return 0;
+        }
+
+        public static byte POP(string reg, RegistersViewModel _vm)
+        {
+            switch (reg)
+            {
+                //BC register pair
+                case "(BC)":
+                    Commands.POP.POPbc(reg, _vm);
+                    break;
+                //DE register pair
+                case "(DE)":
+                    Commands.POP.POPde(reg, _vm);
+                    break;
+                //HL register pair
+                case "(HL)":
+                    Commands.POP.POPhl(reg, _vm);
+                    break;
+                //AF register pair
+                case "(AF)":
+                    Commands.POP.POPaf(reg, _vm);
+                    break;
+            }
             return 0;
         }
 
