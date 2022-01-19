@@ -8,6 +8,12 @@ namespace z80.Model.Data
 {
     public static class z80commands
     {
+        /// <summary>
+        /// Klasa bazowa sterująca instrukcjami
+        /// </summary>
+        /// <param name="inputArray">Wartość wpisywana przez użytkownika w konsoli</param>
+        /// <param name="_cvm">ViewModel odpowiedzialny za widok konsoli</param>
+        /// <param name="_vm">ViewModel odpowiedzialny za widok rejestrów</param>
         public static byte defaultCommand(string[] inputArray, RegistersViewModel _vm, ConsoleViewModel _cvm)
         {
             switch (inputArray[0])
@@ -125,6 +131,14 @@ namespace z80.Model.Data
             return 0;
         }
 
+        /// <summary>
+        /// Metoda sterująca rozkazem LD
+        /// Na podstawie podanych parametrów wybiera odpowiednie wywołanie rozkazu LD
+        /// </summary>
+        /// <param name="reg">Rejestr bądź para rejestrów</param>
+        /// <param name="value">Wartość liczbowa podana przez użytkownika</param>
+        /// <param name="_vm">ViewModel odpowiedzialny za widok rejestrów</param>
+        /// <returns></returns>
         public static byte LD(string reg, string value, RegistersViewModel _vm)
         {
             //LD types
@@ -149,6 +163,13 @@ namespace z80.Model.Data
             }
             return 0;
         }
+        /// <summary>
+        /// Metoda sterująca rozkazem ADD
+        /// Na podstawie podanych parametrów wybiera odpowiednie wywołanie rozkazu ADD
+        /// </summary>
+        /// <param name="reg">Rejestr bądź para rejestrów</param>
+        /// <param name="_vm">ViewModel odpowiedzialny za widok rejestrów</param>
+        /// <returns></returns>
         public static byte ADD(string reg, RegistersViewModel _vm)
         {
             string[] registers = new string[] { "A", "F", "B", "C", "D", "E", "H", "L" };
@@ -175,24 +196,12 @@ namespace z80.Model.Data
             return 0;
         }
 
-        public static byte NEG(RegistersViewModel _vm)
-        {
-            var acc = _vm.MainRegister.FirstOrDefault(x => x.address == "A");
-            byte[] tab = BitConverter.GetBytes(acc.value);
-            BitArray tab2 = new BitArray(tab);
-            BitArray finaltab = new BitArray(8);
-            for (int i = 0; i < tab2.Length/2; i++)
-            {
-                if (tab2[i])
-                    finaltab[i] = false;
-                else
-                   finaltab[i] = true;
-            }
-            byte final = finaltab.ToByte();
-            acc.value = final;
-            return 0;
-        }
-
+        /// <summary>
+        /// Metoda sterująca rozkazem PUSH
+        /// </summary>
+        /// <param name="reg">Rejestr bądź para rejestrów</param>
+        /// <param name="_vm">ViewModel odpowiedzialny za widok rejestrów</param>
+        /// <returns></returns>
         public static byte PUSH(string reg, RegistersViewModel _vm)
         {
             switch (reg)
@@ -216,7 +225,12 @@ namespace z80.Model.Data
             }
             return 0;
         }
-
+        /// <summary>
+        /// Metoda sterująca rozkazem POP
+        /// </summary>
+        /// <param name="reg">Rejestr bądź para rejestrów</param>
+        /// <param name="_vm">ViewModel odpowiedzialny za widok rejestrów</param>
+        /// <returns></returns>
         public static byte POP(string reg, RegistersViewModel _vm)
         {
             switch (reg)
@@ -240,7 +254,35 @@ namespace z80.Model.Data
             }
             return 0;
         }
-
+        /// <summary>
+        /// Operacja logiczna NEG
+        /// </summary>
+        /// <param name="_vm">ViewModel odpowiedzialny za widok rejestrów</param>
+        /// <returns></returns>
+        public static byte NEG(RegistersViewModel _vm)
+        {
+            var acc = _vm.MainRegister.FirstOrDefault(x => x.address == "A");
+            byte[] tab = BitConverter.GetBytes(acc.value);
+            BitArray tab2 = new BitArray(tab);
+            BitArray finaltab = new BitArray(8);
+            for (int i = 0; i < tab2.Length / 2; i++)
+            {
+                if (tab2[i])
+                    finaltab[i] = false;
+                else
+                    finaltab[i] = true;
+            }
+            byte final = finaltab.ToByte();
+            acc.value = final;
+            return 0;
+        }
+        /// <summary>
+        /// Operacja logiczna ANDR
+        /// </summary>
+        /// <param name="reg">Rejestr podawany przez użytkownika</param>
+        /// <param name="_vm">ViewModel odpowiedzialny za widok rejestrów</param>
+        /// <param name="_bitOperationsExtensions">Klasa odpowiedzialna za operacje logiczne</param>
+        /// <returns></returns>
         public static byte ANDR(string reg,
             RegistersViewModel _vm,
             BitOperationsExtensions _bitOperationsExtensions)
@@ -250,7 +292,13 @@ namespace z80.Model.Data
             acc.value = _bitOperationsExtensions.And(acc.value, currentRegister.value);
             return 0;
         }
-
+        /// <summary>
+        /// Operacja logiczna ORR
+        /// </summary>
+        /// <param name="reg">Rejestr podawany przez użytkownika</param>
+        /// <param name="_vm">ViewModel odpowiedzialny za widok rejestrów</param>
+        /// <param name="_bitOperationsExtensions">Klasa odpowiedzialna za operacje logiczne</param>
+        /// <returns></returns>
         public static byte ORR(string reg,
             RegistersViewModel _vm,
             BitOperationsExtensions _bitOperationsExtensions)
@@ -260,7 +308,13 @@ namespace z80.Model.Data
             acc.value = _bitOperationsExtensions.Or(acc.value, currentRegister.value);
             return 0;
         }
-
+        /// <summary>
+        /// Operacja logiczna XORR
+        /// </summary>
+        /// <param name="reg">Rejestr podawany przez użytkownika</param>
+        /// <param name="_vm">ViewModel odpowiedzialny za widok rejestrów</param>
+        /// <param name="_bitOperationsExtensions">Klasa odpowiedzialna za operacje logiczne</param>
+        /// <returns></returns>
         public static byte XORR(string reg,
             RegistersViewModel _vm,
             BitOperationsExtensions _bitOperationsExtensions)
@@ -271,7 +325,11 @@ namespace z80.Model.Data
             return 0;
         }
 
-
+        /// <summary>
+        /// Funkcja konwertująca wartość liczbową typu byte na tablicę 0 i 1
+        /// </summary>
+        /// <param name="bits">Tablica bitowa wartości typu byte</param>
+        /// <returns></returns>
         public static byte ToByte(this BitArray bits)
         {
             if (bits.Count != 8)

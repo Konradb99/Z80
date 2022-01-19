@@ -6,6 +6,9 @@ using z80.ViewModel.BaseClass;
 
 namespace z80.ViewModel
 {
+    /// <summary>
+    /// Podstawowy ViewModel aplikacji
+    /// </summary>
     class MainViewModel : ViewModelBase
     {
         public ConsoleViewModel ConsoleVM { get; set; }

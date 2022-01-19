@@ -6,8 +6,18 @@ using z80.ViewModel;
 
 namespace z80.Model.Data.Commands
 {
+    /// <summary>
+    /// Klasa obsługująca rozkaz POP
+    /// </summary>
     public class POP
     {
+        /// <summary>
+        /// Rozkaz POP (BC)
+        /// Wpisuje wartość spod ostatnich dwóch komórek pamięci do rejestrów B i C, a następnie usuwa te komórki z stosu pamięci
+        /// </summary>
+        /// <param name="reg">Rejestr podawany przez użytkownika</param>
+        /// <param name="_vm">Instacja klasy ViewModel rejestrów</param>
+        /// <returns>Zmienia odpowiednio rejestry</returns>
         public static byte POPbc(string reg, RegistersViewModel _vm)
         {
             Register hReg = _vm.MainRegister.FirstOrDefault(x => x.address == "B");
@@ -29,6 +39,13 @@ namespace z80.Model.Data.Commands
             }
             return 0;
         }
+        /// <summary>
+        /// Rozkaz POP (DE)
+        /// Wpisuje wartość spod ostatnich dwóch komórek pamięci do rejestrów D i E, a następnie usuwa te komórki z stosu pamięci
+        /// </summary>
+        /// <param name="reg">Rejestr podawany przez użytkownika</param>
+        /// <param name="_vm">Instacja klasy ViewModel rejestrów</param>
+        /// <returns>Zmienia odpowiednio rejestry</returns>
         public static byte POPde(string reg, RegistersViewModel _vm)
         {
             Register hReg = _vm.MainRegister.FirstOrDefault(x => x.address == "D");
@@ -50,6 +67,13 @@ namespace z80.Model.Data.Commands
             }
             return 0;
         }
+        /// <summary>
+        /// Rozkaz POP (HL)
+        /// Wpisuje wartość spod ostatnich dwóch komórek pamięci do rejestrów H i L a następnie usuwa te komórki z stosu pamięci
+        /// </summary>
+        /// <param name="reg">Rejestr podawany przez użytkownika</param>
+        /// <param name="_vm">Instacja klasy ViewModel rejestrów</param>
+        /// <returns>Zmienia odpowiednio rejestry</returns>
         public static byte POPhl(string reg, RegistersViewModel _vm)
         {
             Register hReg = _vm.MainRegister.FirstOrDefault(x => x.address == "H");
@@ -71,6 +95,13 @@ namespace z80.Model.Data.Commands
             }
             return 0;
         }
+        /// <summary>
+        /// Rozkaz POP (AF)
+        /// Wpisuje wartość spod ostatnich dwóch komórek pamięci do rejestrów A i F, a następnie usuwa te komórki z stosu pamięci
+        /// </summary>
+        /// <param name="reg">Rejestr podawany przez użytkownika</param>
+        /// <param name="_vm">Instacja klasy ViewModel rejestrów</param>
+        /// <returns>Zmienia odpowiednio rejestry</returns>
         public static byte POPaf(string reg, RegistersViewModel _vm)
         {
             Register hReg = _vm.MainRegister.FirstOrDefault(x => x.address == "A");

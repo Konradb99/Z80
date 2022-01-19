@@ -5,6 +5,9 @@ using z80.ViewModel.BaseClass;
 
 namespace z80.ViewModel
 {
+    /// <summary>
+    /// ViewModel odpowiedzialny za widok konsoli
+    /// </summary>
     public class ConsoleViewModel : ViewModelBase
     {
         private string _consoleResult = null;
@@ -17,6 +20,9 @@ namespace z80.ViewModel
 
             z80Class = new Data.z80(bitOperationsExtensions, _registersViewModel, this);
         }
+        /// <summary>
+        /// Parametr klasy odpowiedzialny za przetwarzanie tekstu podanego przez użytkownika w konsoli
+        /// </summary>
         public string ConsoleResult
         {
             get
@@ -30,7 +36,9 @@ namespace z80.ViewModel
                 onPropertyChanged(nameof(ConsoleResult));
             }
         }
-
+        /// <summary>
+        /// Parametr klasy odpowiedzialny za przetwarzanie tekstu podanego przez użytkownika w konsoli
+        /// </summary>
         private string _consoleInput = null;
         public string ConsoleInput
         {

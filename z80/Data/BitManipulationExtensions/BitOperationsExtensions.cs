@@ -6,6 +6,13 @@ namespace z80.Data.BitManipulationExtensions
     {
         public Flags Q { get; set; } = 0x00;
 
+
+        /// <summary>
+        /// Operacja logiczna AND. 
+        /// </summary>
+        /// <param name="a">Rejestr podawany przez użytkownika</param>
+        /// <param name="b">Akumulator podawany w kodzie</param>
+        /// <returns>Wartość na podstawie podanej operacji logicznej</returns>
         public byte And(byte a, byte b)
         {
             var result = (byte)(a & b);
@@ -24,7 +31,12 @@ namespace z80.Data.BitManipulationExtensions
 
             return result;
         }
-
+        /// <summary>
+        /// Operacja logiczna OR. 
+        /// </summary>
+        /// <param name="a">Rejestr podawany przez użytkownika</param>
+        /// <param name="b">Akumulator podawany w kodzie</param>
+        /// <returns>Wartość na podstawie podanej operacji logicznej</returns>
         public byte Or(byte a, byte b)
         {
             var result = (byte)(a | b);
@@ -43,7 +55,12 @@ namespace z80.Data.BitManipulationExtensions
 
             return result;
         }
-
+        /// <summary>
+        /// Operacja logiczna XOR. 
+        /// </summary>
+        /// <param name="a">Rejestr podawany przez użytkownika</param>
+        /// <param name="b">Akumulator podawany w kodzie</param>
+        /// <returns>Wartość na podstawie podanej operacji logicznej</returns>
         public byte Xor(byte a, byte b)
         {
             var result = (byte)(a ^ b);
@@ -64,7 +81,11 @@ namespace z80.Data.BitManipulationExtensions
         }
 
 
-
+        /// <summary>
+        /// Operacja sprawdzania parzystości
+        /// </summary>
+        /// <param name="res">Wartość zwrócona z operacji logicznej</param>
+        /// <returns>Wartość logiczna 0 lub 1, zależna od podanej wartości argumentu</returns>
         private static bool Parity(ushort res)
         {
             var retVal = true;

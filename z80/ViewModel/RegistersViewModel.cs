@@ -10,6 +10,9 @@ namespace z80.ViewModel
     {
 
         private string _currentInstruction = "";
+        /// <summary>
+        /// Parametr klasy za przetrzymywanie i wyświetlanie aktualnie wykonanego rozkazu
+        /// </summary>
         public string CurrentInstruction
         {
             get
@@ -25,6 +28,9 @@ namespace z80.ViewModel
         }
 
         private string _lastInstruction = "";
+        /// <summary>
+        /// Parametr klasy odpowiedzialny za przetrzymywanie i wyświetlanie poprzedniego wykonanego rozkazu
+        /// </summary>
         public string LastInstruction
         {
             get
@@ -39,6 +45,9 @@ namespace z80.ViewModel
         }
 
         private int _instructionCounter = 0;
+        /// <summary>
+        /// Parametr klasy odpowiedzialny za przetrzymywanie i wyświetlanie licznika rozkazów
+        /// </summary>
         public int InstructionCounter
         {
             get
@@ -53,6 +62,9 @@ namespace z80.ViewModel
         }
 
         private ObservableCollection<Memory> _mainMemory = new ObservableCollection<Memory>();
+        /// <summary>
+        /// Kolekcja przetrzymująca tablicę pamięci
+        /// </summary>
         public ObservableCollection<Memory> MainMemory
         {
             get
@@ -75,6 +87,9 @@ namespace z80.ViewModel
         }
 
         private ObservableCollection<Register> _mainRegister = new ObservableCollection<Register>();
+        /// <summary>
+        /// Kolekcja przetrzymująca rejestry procesora
+        /// </summary>
         public ObservableCollection<Register> MainRegister
         {
             get
@@ -98,6 +113,10 @@ namespace z80.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Metoda odpowiedzialna za aktualizowanie GUI po zmianie któregoś z parametrów klasy
+        /// </summary>
+        /// <param name="PropertyName">Nazwa zmienianego parametry</param>
         protected virtual void OnPropertyChanged(string PropertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;

@@ -55,13 +55,19 @@ namespace z80.View.ViewControls
 
         #endregion
 
-
+        /// <summary>
+        /// Metoda odpowiedzialna za przetwarzanie tekstu wpisywanego przez użytkownika w konsoli
+        /// </summary>
+        /// <param name="displayMessage"></param>
+        /// <returns></returns>
         public string Open(string displayMessage)
         {
             display.Text = displayMessage;
             return _Result;
         }
-
+        /// <summary>
+        /// Metoda odpowiadająca za poprawne przesyłanie tekstu wpisanego przez użytkownika do ViewModelu aplikacji
+        /// </summary>
         private void input_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)

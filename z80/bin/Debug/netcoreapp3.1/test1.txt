@@ -1,0 +1,5 @@
+LD C 2
+LD B 5
+ADD C
+ADD B
+PUSH (BC)
