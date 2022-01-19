@@ -1,0 +1,7 @@
+LD L 6
+LD H 8
+LD (HL) 15
+ADD L
+ADD (HL)
+LD F 6
+PUSH (AF)

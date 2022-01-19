@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using z80.Data.BitManipulationExtensions;
 using z80.Model.Data;
 using z80.ViewModel;
@@ -20,27 +21,36 @@ namespace z80.Data
 
         public void ProcessInput(string input)
         {
-            var inputArray = input.Split(' ');
-            if (inputArray.Any())
+
+            string[] inputArray;
+            try
             {
-                switch (inputArray[0])
+                inputArray = input.Split(' ');
+                Console.WriteLine(inputArray);
+                if (inputArray.Any())
                 {
-                    case "XORR":
-                        z80commands.XORR(inputArray[1], _vm, _bitOperationsExtensions);
-                        break;
-                    case "ORR":
-                        z80commands.ORR(inputArray[1], _vm, _bitOperationsExtensions);
-                        break;
-                    case "ANDR":
-                        z80commands.ANDR(inputArray[1], _vm, _bitOperationsExtensions);
-                        break;
-                    case "NEG":
-                        z80commands.NEG(_vm);
-                        break;
-                    default:
-                        z80commands.defaultCommand(inputArray, _vm);
-                        break;
+                    switch (inputArray[0])
+                    {
+                        case "XORR":
+                            z80commands.XORR(inputArray[1], _vm, _bitOperationsExtensions);
+                            break;
+                        case "ORR":
+                            z80commands.ORR(inputArray[1], _vm, _bitOperationsExtensions);
+                            break;
+                        case "ANDR":
+                            z80commands.ANDR(inputArray[1], _vm, _bitOperationsExtensions);
+                            break;
+                        case "NEG":
+                            z80commands.NEG(_vm);
+                            break;
+                        default:
+                            z80commands.defaultCommand(inputArray, _vm, _cvm);
+                            break;
+                    }
                 }
+            }catch(Exception e)
+            {
+                Console.WriteLine(e);
             }
         }
     }

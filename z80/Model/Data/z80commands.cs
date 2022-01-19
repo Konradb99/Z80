@@ -8,7 +8,7 @@ namespace z80.Model.Data
 {
     public static class z80commands
     {
-        public static byte defaultCommand(string[] inputArray, RegistersViewModel _vm)
+        public static byte defaultCommand(string[] inputArray, RegistersViewModel _vm, ConsoleViewModel _cvm)
         {
             switch (inputArray[0])
             {
@@ -16,6 +16,22 @@ namespace z80.Model.Data
                     try
                     {
                         LD(inputArray[1], inputArray[2], _vm);
+                        if (_vm.CurrentInstruction != "")
+                        {
+                            _vm.LastInstruction = _vm.CurrentInstruction;
+                        }
+                        if (inputArray.Length == 1)
+
+                            _vm.CurrentInstruction = inputArray[0];
+                        else if (inputArray.Length == 2)
+                        {
+                            _vm.CurrentInstruction = inputArray[0] + " " + inputArray[1];
+                        }
+                        else if (inputArray.Length == 3)
+                        {
+                            _vm.CurrentInstruction = inputArray[0] + " " + inputArray[1] + " " + inputArray[2];
+                        }
+                        _vm.InstructionCounter++;
                     }
                     catch (Exception e)
                     {
@@ -26,6 +42,22 @@ namespace z80.Model.Data
                     try
                     {
                         ADD(inputArray[1], _vm);
+                        if (_vm.CurrentInstruction != "")
+                        {
+                            _vm.LastInstruction = _vm.CurrentInstruction;
+                        }
+                        if (inputArray.Length == 1)
+
+                            _vm.CurrentInstruction = inputArray[0];
+                        else if (inputArray.Length == 2)
+                        {
+                            _vm.CurrentInstruction = inputArray[0] + " " + inputArray[1];
+                        }
+                        else if (inputArray.Length == 3)
+                        {
+                            _vm.CurrentInstruction = inputArray[0] + " " + inputArray[1] + " " + inputArray[2];
+                        }
+                        _vm.InstructionCounter++;
                     }
                     catch (Exception e)
                     {
@@ -36,6 +68,22 @@ namespace z80.Model.Data
                     try
                     {
                         PUSH(inputArray[1], _vm);
+                        if (_vm.CurrentInstruction != "")
+                        {
+                            _vm.LastInstruction = _vm.CurrentInstruction;
+                        }
+                        if (inputArray.Length == 1)
+
+                            _vm.CurrentInstruction = inputArray[0];
+                        else if (inputArray.Length == 2)
+                        {
+                            _vm.CurrentInstruction = inputArray[0] + " " + inputArray[1];
+                        }
+                        else if (inputArray.Length == 3)
+                        {
+                            _vm.CurrentInstruction = inputArray[0] + " " + inputArray[1] + " " + inputArray[2];
+                        }
+                        _vm.InstructionCounter++;
                     }
                     catch (Exception e)
                     {
@@ -46,13 +94,34 @@ namespace z80.Model.Data
                     try
                     {
                         POP(inputArray[1], _vm);
+                        if (_vm.CurrentInstruction != "")
+                        {
+                            _vm.LastInstruction = _vm.CurrentInstruction;
+                        }
+                        if (inputArray.Length == 1)
+
+                            _vm.CurrentInstruction = inputArray[0];
+                        else if (inputArray.Length == 2)
+                        {
+                            _vm.CurrentInstruction = inputArray[0] + " " + inputArray[1];
+                        }
+                        else if (inputArray.Length == 3)
+                        {
+                            _vm.CurrentInstruction = inputArray[0] + " " + inputArray[1] + " " + inputArray[2];
+                        }
+                        _vm.InstructionCounter++;
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e);
                     }
                     break;
+                default:
+                    Console.WriteLine(inputArray[0]);
+                    FileHandling.handleFile(inputArray[0], _vm, _cvm);
+                    break;
             }
+            
             return 0;
         }
 

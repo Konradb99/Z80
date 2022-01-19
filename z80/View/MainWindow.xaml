@@ -148,19 +148,15 @@
                         <StackPanel>
                             <TextBlock Text="CURRENT INSTRUCTION" HorizontalAlignment="Center" FontSize="20px" Margin="0 30 0 0"/>
                             <Border Margin="80 0" BorderThickness="2">
-                                <TextBlock Background="#C4C4C4" Margin="0 0" Text="{Binding RegistersVM.CurrentInstruction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            </Border>
-                            <TextBlock Text="NEXT INSTRUCTION" HorizontalAlignment="Center" FontSize="20px" Margin="0 30 0 0"/>
-                            <Border Margin="80 0" BorderThickness="2">
-                                <TextBlock Background="#C4C4C4" Margin="0 0" />
+                                <TextBlock Background="#C4C4C4" Margin="0 0" Padding="5 0" Text="{Binding Path=RegistersVM.CurrentInstruction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Border>
                             <TextBlock Text="LAST INSTRUCTION" HorizontalAlignment="Center" FontSize="20px" Margin="0 30 0 0"/>
                             <Border Margin="80 0" BorderThickness="2">
-                                <TextBlock Background="#C4C4C4" Margin="0 0" Text="{Binding RegistersVM.LastInstruction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <TextBlock Background="#C4C4C4" Margin="0 0" Padding="5 0" Text="{Binding RegistersVM.LastInstruction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Border>
                             <TextBlock Text="INSTRUCTIONS COUNTER" HorizontalAlignment="Center" FontSize="20px" Margin="0 30 0 0"/>
                             <Border Margin="80 0" BorderThickness="2">
-                                <TextBlock Background="#C4C4C4" Margin="0 0" />
+                                <TextBlock Background="#C4C4C4" Margin="0 0" Padding="5 0" Text="{Binding Path=RegistersVM.InstructionCounter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </Border>
                         </StackPanel>
                     </Grid>

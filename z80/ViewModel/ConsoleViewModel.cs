@@ -1,4 +1,6 @@
-﻿using z80.Data.BitManipulationExtensions;
+﻿using System.ComponentModel;
+using System.Windows.Data;
+using z80.Data.BitManipulationExtensions;
 using z80.ViewModel.BaseClass;
 
 namespace z80.ViewModel
@@ -25,7 +27,7 @@ namespace z80.ViewModel
             {
                 _consoleResult = value;
                 z80Class.ProcessInput(_consoleResult);
-                onPropertyChanged(nameof(_consoleResult));
+                onPropertyChanged(nameof(ConsoleResult));
             }
         }
 
