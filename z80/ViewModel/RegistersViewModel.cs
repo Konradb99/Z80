@@ -18,8 +18,9 @@ namespace z80.ViewModel
             }
             set
             {
+                if (value == _currentInstruction) return;
                 _currentInstruction = value;
-                OnPropertyChanged(nameof(_currentInstruction));
+                OnPropertyChanged(nameof(CurrentInstruction));
             }
         }
 
@@ -33,7 +34,21 @@ namespace z80.ViewModel
             set
             {
                 _lastInstruction = value;
-                OnPropertyChanged(nameof(_lastInstruction));
+                OnPropertyChanged(nameof(LastInstruction));
+            }
+        }
+
+        private int _instructionCounter = 0;
+        public int InstructionCounter
+        {
+            get
+            {
+                return _instructionCounter;
+            }
+            set
+            {
+                _instructionCounter = value;
+                OnPropertyChanged(nameof(InstructionCounter));
             }
         }
 
@@ -88,7 +103,7 @@ namespace z80.ViewModel
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)
             {
-                handler(this, new PropertyChangedEventArgs(PropertyName));
+                handler.Invoke(this, new PropertyChangedEventArgs(PropertyName));
             }
         }
 
