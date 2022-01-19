@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using Xunit;
 using z80.Data.BitManipulationExtensions;
 using z80.ViewModel;
@@ -12,6 +12,9 @@ namespace Z80DataTests
         private readonly ConsoleViewModel _cvm;
         private readonly z80.Data.z80 _z80Class;
 
+        /// <summary>
+        /// Konstruktor klasy z80CommandsTests
+        /// </summary>
         public z80CommandsTests()
         {
             _bitOperationsExtensions = new BitOperationsExtensions();
@@ -20,6 +23,14 @@ namespace Z80DataTests
             _z80Class = new z80.Data.z80(_bitOperationsExtensions, _vm, _cvm);
         }
 
+
+        /// <summary>
+        /// Test jednostkowy rozkazu ANDR 
+        /// </summary>
+        /// <param name="registerValue">Wartość danego rejestru</param>
+        /// <param name="currentAccValue">Aktualna wartość w akumulatorze</param>
+        /// <param name="expectedAccValue">Oczekiwania wartość w akumulatorze</param>
+        /// <returns>Funkcja nic nie zwraca, wykonuje daną asercje</returns>
         [Theory]
         [InlineData(0, 1, 0)]
         [InlineData(1, 0, 0)]
@@ -33,6 +44,13 @@ namespace Z80DataTests
             Assert.Equal(expectedAccValue, _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == "A").value);
         }
 
+        /// <summary>
+        /// Test jednostkowy rozkazu ORR
+        /// </summary>
+        /// <param name="registerValue">Wartość danego rejestru</param>
+        /// <param name="currentAccValue">Aktualna wartość w akumulatorze</param>
+        /// <param name="expectedAccValue">Oczekiwania wartość w akumulatorze</param>
+        /// <returns>Funkcja nic nie zwraca, wykonuje daną asercje</returns>
         [Theory]
         [InlineData(0, 1, 1)]
         [InlineData(1, 0, 1)]
@@ -46,6 +64,14 @@ namespace Z80DataTests
             Assert.Equal(expectedAccValue, _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == "A").value);
         }
 
+
+        /// <summary>
+        /// Test jednostkowy rozkazu XORR 
+        /// </summary>
+        /// <param name="registerValue">Wartość danego rejestru</param>
+        /// <param name="currentAccValue">Aktualna wartość w akumulatorze</param>
+        /// <param name="expectedAccValue">Oczekiwania wartość w akumulatorze</param>
+        /// <returns>Funkcja nic nie zwraca, wykonuje daną asercje</returns>
         [Theory]
         [InlineData(0, 1, 1)]
         [InlineData(1, 0, 1)]
@@ -59,6 +85,12 @@ namespace Z80DataTests
             Assert.Equal(expectedAccValue, _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == "A").value);
         }
 
+        /// <summary>
+        /// Test jednostkowy rozkazu ADDR 
+        /// </summary>
+        /// <param name="operation">Operacja</param>
+        /// <param name="currentRegValue">Aktualna wartość danego rejestru</param>
+        /// <returns>Funkcja nic nie zwraca, wykonuje daną asercje</returns>
         [Theory]
         [InlineData("ADD B", 5)]
         [InlineData("ADD B", 0x02)]
@@ -69,6 +101,13 @@ namespace Z80DataTests
             Assert.Equal(currentRegValue, _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == "A").value);
         }
 
+
+        /// <summary>
+        /// Test jednostkowy rozkazu ADD (HL)
+        /// </summary>
+        /// <param name="operation">Operacja</param>
+        /// <param name="expectedAccValue">Oczekiwania wartość w akumulatorze</param>
+        /// <returns>Funkcja nic nie zwraca, wykonuje daną asercje</returns>
         [Theory]
         [InlineData("ADD (HL)", 10)]
         public void AddHLTests(string operation, byte expectedAccValue)
@@ -80,6 +119,12 @@ namespace Z80DataTests
             Assert.Equal(expectedAccValue, _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == "A").value);
         }
 
+        /// <summary>
+        /// Test jednostkowy rozkazu ADD
+        /// </summary>
+        /// <param name="operation">Operacja</param>
+        /// <param name="expectedAccValue">Oczekiwania wartość w akumulatorze</param>
+        /// <returns>Funkcja nic nie zwraca, wykonuje daną asercje</returns>
         [Theory]
         [InlineData("ADD 10", 10)]
         public void AddNTests(string operation, byte expectedAccValue)
@@ -88,7 +133,12 @@ namespace Z80DataTests
             Assert.Equal(expectedAccValue, _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == "A").value);
         }
 
-
+        /// <summary>
+        /// Test jednostkowy rozkazu LD
+        /// </summary>
+        /// <param name="operation">Operacja</param>
+        /// <param name="expectedRegValue">Oczekiwania wartość w danym rejestrze</param>
+        /// <returns>Funkcja nic nie zwraca, wykonuje daną asercje</returns>
         [Theory]
         [InlineData("LD C 7", 7)]
         public void LdTests(string operation, byte expectedRegValue)
@@ -97,6 +147,13 @@ namespace Z80DataTests
             Assert.Equal(expectedRegValue, _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == "C").value);
         }
 
+        /// <summary>
+        /// Test jednostkowy rozkazu LD (X1X2)
+        /// </summary>
+        /// <param name="operation">Operacja</param>
+        /// <param name="reg1">rejestr X1</param>
+        /// <param name="reg2">rejestr X2</param>
+        /// <returns>Funkcja nic nie zwraca, wykonuje daną asercje</returns>
         [Theory]
         [InlineData("LD (HL) 10", "H", "L")]
         [InlineData("LD (DE) 10", "D", "E")]
@@ -110,6 +167,14 @@ namespace Z80DataTests
             Assert.Equal(10, _z80Class._vm.MainMemory.FirstOrDefault(x => x.address == regAddress).value);
         }
 
+
+        /// <summary>
+        /// Test jednostkowy rozkazu NEG
+        /// </summary>
+        /// <param name="operation">Operacja</param>
+        /// <param name="actualAccValue">Aktualna wartość w akumulatorze</param>
+        /// <param name="expectedAccValue">Oczekiwania wartość w akumulatorze</param>
+        /// <returns>Funkcja nic nie zwraca, wykonuje daną asercje</returns>
         [Theory]
         [InlineData("NEG", 0, 255)]
         [InlineData("NEG", 255, 0)]
@@ -120,6 +185,13 @@ namespace Z80DataTests
             Assert.Equal(expectedAccValue, _z80Class._vm.MainRegister.FirstOrDefault(x => x.address == "A").value);
         }
 
+        /// <summary>
+        /// Test jednostkowy rozkazu PUSH (X1X2)
+        /// </summary>
+        /// <param name="operation">Operacja</param>
+        /// <param name="reg1">rejestr X1</param>
+        /// <param name="reg2">rejestr X2</param>
+        /// <returns>Funkcja nic nie zwraca, wykonuje daną asercje</returns>
         [Theory]
         [InlineData("PUSH (BC)", "B", "C")]
         [InlineData("PUSH (DE)", "D", "E")]
@@ -134,6 +206,13 @@ namespace Z80DataTests
             Assert.Equal(0x04, _z80Class._vm.MainMemory[_vm.MainMemory.Count - 2].value);
         }
 
+        /// <summary>
+        /// Test jednostkowy rozkazu POP (X1X2)
+        /// </summary>
+        /// <param name="operation">Operacja</param>
+        /// <param name="reg1">rejestr X1</param>
+        /// <param name="reg2">rejestr X2</param>
+        /// <returns>Funkcja nic nie zwraca, wykonuje daną asercje</returns>
         [Theory]
         [InlineData("POP (BC)", "B", "C")]
         [InlineData("POP (DE)", "D", "E")]
